@@ -25,4 +25,10 @@ class Board {
         
         return spaces;
     }
+
+    drawHTMLBoard() {
+        for (space in this.spaces) {
+            space.drawSVGSpace();
+        }
+    }
 }

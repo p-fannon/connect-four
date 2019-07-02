@@ -22,4 +22,18 @@ class Player {
         
         return tokens;
     }
+
+    get unusedTokens() {
+        return this.tokens.filter(token => token.dropped == false);
+    }
+
+    get activeToken() {
+        const unused = this.unusedTokens();
+        if (unused.length > 0) {
+            return unused[0];
+        } else {
+            return null;
+        }
+    }
+
 }
