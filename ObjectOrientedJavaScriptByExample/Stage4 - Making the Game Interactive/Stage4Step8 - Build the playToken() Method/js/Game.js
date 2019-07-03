@@ -47,8 +47,24 @@ class Game {
             } else if (e.key === "ArrowRight") {
                 this.activePlayer.activeToken.moveRight(this.board.columns);
             } else if (e.key === "ArrowDown") {
-                // play token
+                this.playToken()
             }
         }
-	}
+    }
+    
+    playToken() {
+        const tokenPosition = this.activePlayer.activeToken.columnLocation
+        let occupied = 0;
+        for (let player of this.players) {
+            for (let token of player.tokens) {
+                if (token.columnLocation === tokenPosition && token.dropped == true) {
+                    occupied++;
+                }
+            }
+        }
+        if (occupied < this.board.rows) {
+            const location = this.activePlayer.activeToken.columnLocation
+            this.activePlayer.activeToken.drop(this.board.spaces[location][(this.board.rows - 1) - occupied])
+        }
+    }
 }

@@ -34,4 +34,10 @@ class Game {
         this.activePlayer.activeToken.drawHTMLToken();
         this.ready = true;
     }
+
+    handleKeydown(eventKey) {
+        if (this.ready && eventKey != "") {
+            console.log(eventKey + ' was pressed');
+        }
+    }
 }
