@@ -61,6 +61,7 @@ class Game {
         let activeToken = this.activePlayer.activeToken;
         let targetColumn = spaces[activeToken.columnLocation];
         let targetSpace = null;
+        let game = this;
 
 		for (let space of targetColumn) {
 			if (space.token === null) {
@@ -70,7 +71,7 @@ class Game {
 
         if (targetSpace !== null) {
             game.ready = false;
-    		activeToken.drop(targetSpace);   
+    		activeToken.drop(targetSpace, game.updateGameState());   
         }              
     }
 
@@ -153,5 +154,21 @@ class Game {
     gameOver(message) {
 		document.getElementById('game-over').style.display = 'block';
         document.getElementById('game-over').textContent = message;
+    }
+
+    updateGameState(token, target) {
+        target.mark(token);
+        let potentialWinner = target.token.owner.name
+        if (this.checkForWin(target)) {
+            this.gameOver(potentialWinner + " WINS!")
+        } else {
+            this.switchPlayers()
+            if (this.activePlayer.checkTokens()) {
+                this.activePlayer.activeToken.drawHTMLToken()
+                this.ready = true;
+            } else {
+                this.gameOver("No tokens left to play.")
+            }
+        }
     }
 }

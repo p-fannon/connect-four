@@ -73,4 +73,10 @@ class Game {
     		activeToken.drop(targetSpace);   
         }              
     }
+
+    switchPlayers() {
+        for (let player of this.players) {
+            player.active = !player.active
+        }
+    }
 }

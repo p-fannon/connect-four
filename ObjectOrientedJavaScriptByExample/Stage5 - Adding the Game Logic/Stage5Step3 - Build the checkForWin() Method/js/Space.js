@@ -21,5 +21,12 @@ class Space {
         svgSpace.setAttributeNS(null, "stroke", "none");
 
         document.getElementById("mask").appendChild(svgSpace);     
-	}	
+    }	
+    
+    get owner() {
+        if (this.token != null) {
+            return this.token.owner
+        }
+        return null
+    }
 }

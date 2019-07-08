@@ -73,4 +73,10 @@ class Game {
     		activeToken.drop(targetSpace);   
         }              
     }
+
+    gameOver() {
+        let done = document.getElementById('game-over');
+        done.style.display = block;
+        done.textContent = message;
+    }
 }

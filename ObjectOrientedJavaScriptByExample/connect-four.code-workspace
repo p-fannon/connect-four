@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "Y:\\connect-four"
+		},
+		{
+			"path": "."
 		}
 	],
 	"settings": {}
